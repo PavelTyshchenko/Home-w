@@ -4,20 +4,57 @@
 // 782 -> 8
 // 918 -> 1
 
-int ReadInt(string message)
+// int Prompt(string message)
+// {
+//     Console.Write(message);
+//     string value = Console.ReadLine();
+//     int result = Convert.ToInt32(value);
+//     return result;
+// }
+// int number = Prompt("Введите трехзначное число: ");
+// if (number < 100 || number >= 1000)
+// {
+//     Console.WriteLine("Вы ввели не трехзначное число");
+//     return;
+// }
+// Console.WriteLine($"Введите число `{number}`");
+// int secondRank = number / 10 % 10;
+// Console.WriteLine($"Вторая цифра `{secondRank}`");
+
+// Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+
+// 645 -> 5
+
+// 78 -> третьей цифры нет
+
+// 32679 -> 6
+
+int Prompt(string message)
 {
     Console.Write(message);
-    return Convert.ToInt32(Console.ReadLine());
+    string value = Console.ReadLine();
+    int result = Convert.ToInt32(value);
+    return result;
 }
-int number = ReadInt("Введите трехзначное число: ");
-int amount = number.ToString().Length;
-
-if (amount < 3 || amount > 3)
+int GetThirdRank(int number)
 {
-    Console.WriteLine("Вы ввели не трехзначное число");
+    while(number > 999)
+    {
+        number /= 10;
+    }
+    return number % 10;
 }
-else
+bool ValidateNumber(int number)
 {
-    Console.WriteLine(InCenter(number));
+    if (number < 100)
+    {
+        Console.WriteLine("Третьей нет");
+        return false;
+    }
+    return true;
 }
-
+int number = Prompt("Введите число: ");
+if (ValidateNumber(number))
+{
+    Console.WriteLine(GetThirdRank(number));
+}
